@@ -9,6 +9,7 @@ export default function Dictionary() {
   const [results, setResults] = useState();
 
   function handleSearch(response) {
+    console.log(response.data);
     setResults(response.data);
   }
 
@@ -26,7 +27,7 @@ export default function Dictionary() {
   }
 
   return (
-    <div>
+    <div className="Dictionary">
       <form onSubmit={search}>
         <input type="search" onChange={updateWord} />
       </form>
