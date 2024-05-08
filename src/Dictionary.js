@@ -3,14 +3,21 @@ import axios from "axios";
 import "./Dictionary.css";
 
 import Results from "./Results";
+import Photos from "./Photos";
 
 export default function Dictionary() {
   const [word, setWord] = useState(null);
   const [results, setResults] = useState();
+  const [photos, setPhotos] = useState();
 
   function handleSearch(response) {
     console.log(response.data);
     setResults(response.data);
+  }
+
+  function handlePexels(response) {
+    console.log(response.data);
+    setPhotos(response.data);
   }
 
   function updateWord(event) {
@@ -24,6 +31,16 @@ export default function Dictionary() {
     let apiUrl = `https://api.shecodes.io/dictionary/v1/define?word=${word}&key=${apiKey}`;
     axios.get(apiUrl).then(handleSearch);
     console.log(apiUrl);
+
+    let pexelsApiKey =
+      "AasuWBtNq0dqtySEV6vgIZuVIC2FsUzeOTUbve4S8DF2dujsoiIimGdt";
+    let pexelsApiUrl = `https://api.pexels.com/v1/search?query=${word}&per_page=6`;
+    let headers = { Authorization: ` ${pexelsApiKey}` };
+    axios
+      .get(pexelsApiUrl, {
+        headers: headers,
+      })
+      .then(handlePexels);
   }
 
   return (
@@ -35,6 +52,7 @@ export default function Dictionary() {
         </form>
       </section>
       <Results data={results} />
+      <Photos data={photos} />
     </div>
   );
 }

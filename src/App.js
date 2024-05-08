@@ -10,7 +10,7 @@ function App() {
         </main>
         <footer className="text-center">
           <p>
-            Coded by Cecilie Lyng.{" "}
+            Coded by Cecilie Dreyer Lyng.{" "}
             <a href="https://github.com/ceciliedreyer/react-dictionary">
               Open-sourced on Github
             </a>
